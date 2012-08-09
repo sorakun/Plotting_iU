@@ -1,0 +1,7 @@
+Plotting iU,
+This project demonstrates the use of iU calculating language, as a simple tool
+for a plotting application.
+Plotting iU require SFML library (http://sfml-dev.org) to be installed, and
+configured.
+
+The project still in its early development stage, more improvements are coming.
