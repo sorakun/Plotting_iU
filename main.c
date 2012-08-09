@@ -6,6 +6,57 @@
 #include <stdio.h>
 #include "iU.h"
 
+#include <SFML/Audio.h>
+#include <SFML/Graphics.h>
+
+sfShape ** generate_points(char * fn)
+{
+    sfShape ** tmp = (sfShape**)malloc(600 * sizeof(sfShape*));
+    int i = 0, j = 0;
+    double res, res2;
+    iU_init();
+    for (; i <= 600; i++, j++)
+    {
+
+        iU_reinit();
+        iU_add_variable("x", (i-300.0));
+        parse_tree = iU_tokenize(fn);
+        iU_gen_parsetables();
+        res = iU_calculate_node(iU_gen_parsetree(0, valSize-1));
+
+        if(DEVIDE_BY_ZERO == 1)
+        {
+            tmp[j] = sfShape_CreateLine(i, 0, i, 600, 1, sfGreen, 0.0, sfGreen);
+            continue;
+        }
+
+        iU_reinit();
+        iU_add_variable("x", (i-300.0+1));
+        parse_tree = iU_tokenize(fn);
+        iU_gen_parsetables();
+        res2 = iU_calculate_node(iU_gen_parsetree(0, valSize-1));
+
+        if(DEVIDE_BY_ZERO == 1)
+        {
+            tmp[j] = sfShape_CreateLine(i+1, 0, i+1, 600, 1, sfGreen, 0.0, sfGreen);
+            continue;
+        }
+
+        if(res<0)
+            res = abs(res)+300;
+        else
+            res = 300-res;
+
+        if(res2<0)
+            res2 = abs(res2)+300;
+        else
+            res2 = 300-res2;
+        //debugf("f(%f) = %f", (double)i , res);
+        tmp[j] = sfShape_CreateLine(i, res, i+1, res2, 1, sfRed, 0.0, sfBlack);
+    }
+    return tmp;
+}
+
 int main()
 {
 
@@ -59,6 +110,8 @@ int main()
 
         sfRenderWindow_Clear(App, sfWhite);
         int i;
+        //printf("fail");
+
         for(i = 0; i < 600; i+= 10)
         {
             tmpLine = sfShape_CreateLine(i, 0, i, 600, 1, grid, 0, grid);
