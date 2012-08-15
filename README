@@ -1,7 +1,9 @@
 Plotting iU,
-This project demonstrates the use of iU calculating language, as a simple tool
-for a plotting application.
-Plotting iU require SFML library (http://sfml-dev.org) to be installed, and
-configured.
+This project demonstrates the use of iU calculating language, as a simple tool for a plotting application.
+Plotting iU require SFML library (http://sfml-dev.org) to be installed, and configured.
 
-The project still in its early development stage, more improvements are coming.
+The application draws the curve of a given function, the user can choose the middle point of view, and the scale.
+
+The project still in its early development stage, lots of bugs to be fixed and more improvements are coming!
+
+A quick introduction: http://sorakun.legtux.org/test-mathematical-functions-with-plotting-iu/
